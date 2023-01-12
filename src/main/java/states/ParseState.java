@@ -1,13 +1,13 @@
 package states;
 
-import tokens.LexicalAnalyzer;
+import tokens.Tokenizer;
 import tokens.Token;
 
 public abstract class ParseState {
 
-    protected LexicalAnalyzer analyzer;
+    protected Tokenizer analyzer;
 
-    public ParseState(LexicalAnalyzer analyzer) {
+    public ParseState(Tokenizer analyzer) {
         this.analyzer = analyzer;
     }
 

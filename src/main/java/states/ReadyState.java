@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ReadyState extends ParseState {
 
-    private Map<Character, Token> oneCharacterTokens = Map.of(
+    private final Map<Character, Token> oneCharacterTokens = Map.of(
             '+', new PlusToken(),
             '-', new MinusToken(),
             '*', new MultiplyToken(),
@@ -15,7 +15,7 @@ public class ReadyState extends ParseState {
             ')', new RightParenToken()
     );
 
-    public ReadyState(LexicalAnalyzer analyzer) {
+    public ReadyState(Tokenizer analyzer) {
         super(analyzer);
     }
 
@@ -23,14 +23,19 @@ public class ReadyState extends ParseState {
     public Token parse() {
         analyzer.skipWhitespaces();
         if (analyzer.isEnd()) {
-            return new Token;
+            analyzer.setState(new EndState(analyzer));
+            return null;
         }
         char currentChar = analyzer.getCurrentChar();
         if (oneCharacterTokens.containsKey(currentChar)) {
             analyzer.skipChar();
             return oneCharacterTokens.get(currentChar);
         }
-
+        if (Character.isDigit(currentChar)) {
+            analyzer.setState(new NumberState(analyzer));
+            return null;
+        }
+        analyzer.setState(new ErrorState(analyzer));
         return null;
     }
 

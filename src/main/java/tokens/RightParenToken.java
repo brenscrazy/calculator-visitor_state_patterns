@@ -9,4 +9,13 @@ public class RightParenToken implements Token {
         visitor.visit(this);
     }
 
+    @Override
+    public String toString() {
+        return ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof RightParenToken;
+    }
 }

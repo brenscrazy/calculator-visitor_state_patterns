@@ -8,10 +8,7 @@ public interface TokenVisitor {
 
     void visit(LeftParenToken token);
     void visit(RightParenToken token);
-    void visit(PlusToken token);
-    void visit(MinusToken token);
-    void visit(MultiplyToken token);
-    void visit(DivideToken token);
+    void visit(OperationToken token);
 
 
 }
