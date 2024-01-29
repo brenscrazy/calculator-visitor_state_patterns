@@ -9,5 +9,4 @@ public interface TokenVisitor {
     void visit(RightParenToken token);
     void visit(OperationToken token);
 
-
 }
